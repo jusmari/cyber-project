@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% block content %} {% if data %}
+
+<div class="flex flex-col gap-10">
+  <div>
+    <div>Create a new mission</div>
+
+    <form
+      action="/app/missions/create/"
+      method="post"
+      class="p-6 rounded border border-black"
+    >
+      {% csrf_token %} {{ data.form }}
+      <input type="submit" value="Submit" />
+    </form>
+  </div>
+
+  {% for m in data.missions %}
+  <button
+    class="bg-slate-300 p-12 rounded shadow-lg"
+    onclick="location.href='{% url 'detail' m.id %}'"
+  >
+    <div class="text-blue">{{ m.description }}</div>
+  </button>
+  {% endfor %}
+</div>
+
+{% else %}
+
+<p>No missions are available.</p>
+
+{% endif %} {% endblock %}

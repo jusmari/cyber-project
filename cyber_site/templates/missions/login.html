@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% block content %}
+<div class="flex flex-col gap-10">
+  <h2 class="text-lg font-bold">Log In</h2>
+
+  <form method="post">
+    {% csrf_token %} {{ form.as_p }}
+    <button class="border rounded p-2 mt-10" type="submit">Log In</button>
+  </form>
+</div>
+
+{% endblock %}
